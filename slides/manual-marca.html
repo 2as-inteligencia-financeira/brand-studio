@@ -10,6 +10,14 @@
     /* ─── Reset & base ─── */
     html { scroll-behavior: smooth; }
     body { overflow-x: hidden; }
+    .dark-surface {
+      --text: #f5f5f2;
+      --muted: #b3b3ad;
+      --dim: #777770;
+      --border: #252520;
+      --surface: #111111;
+      --surface-2: #181818;
+    }
 
     /* ─── Layout ─── */
     .wrap  { max-width: 1100px; margin: 0 auto; padding: 88px 56px; }
@@ -253,13 +261,13 @@
 <body>
 
 <!-- NAV TOPO -->
-<nav class="top-nav">
+<nav class="top-nav dark-surface">
   <img src="../assets/luniq-logo-transparente-escuro.svg" alt="Luniq" />
   <a href="../index.html">← Voltar ao Hub</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero dark-surface">
   <div class="hero-logo">
     <div class="hero-logo-wm"><span class="l">L</span><span class="u">UNIQ</span></div>
     <div class="hero-logo-div"></div>
@@ -394,7 +402,7 @@
     </div>
   </div>
 
-  <div class="anat">
+<div class="anat dark-surface">
     <div class="anat-title">Anatomia do símbolo</div>
     <div class="anat-notes">
       <div class="anat-note"><div class="anat-dot" style="background:var(--amber)"></div><div class="anat-txt"><strong>L em amber (#f59e0b)</strong> — inicial de Liz (2021) e Lara (2026). O "lu" de luz. O elemento que diferencia a marca e ancora seu significado mais profundo. Nunca substituir por outra cor.</div></div>
@@ -624,7 +632,7 @@
   </div>
 
   <!-- Stack -->
-  <div class="panel-stack">
+  <div class="panel-stack dark-surface">
     <span class="stack-label">Stack técnico</span>
     <div class="stack-items">
       <div class="stack-item"><strong>React 19</strong></div>
@@ -730,7 +738,7 @@
   </div>
 </div></div>
 
-<footer class="pg-footer">
+<footer class="pg-footer dark-surface">
   <span>Luniq Inteligência Financeira · Anderson Almeida · 2026</span>
   <span>Manual da Marca v5.0</span>
 </footer>
