@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luniq — Precificação</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/theme.css" />
+  <style>
+    body { background: var(--bg); font-family: var(--sans); color: var(--text); }
+
+    /* ── NAV ── */
+    .top-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 56px; background: #050505; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 99;
+    }
+    .top-nav-logo { display: flex; align-items: baseline; }
+    .top-nav-logo .l { font-size: 20px; font-weight: 800; color: var(--amber); letter-spacing: -.04em; }
+    .top-nav-logo .u { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.04em; }
+    .top-nav a { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: #666; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .top-nav a:hover { color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 56px 64px; border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 40% 60% at 90% 50%, rgba(245,158,11,.06) 0%, transparent 65%),
+        #050505;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(30,30,30,.6) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(36px,5.5vw,64px); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 18px; }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero-desc { font-size: 15px; font-weight: 300; color: #888; max-width: 560px; line-height: 1.75; }
+
+    /* ── SECTION ── */
+    .wrap { padding: 0 56px 80px; }
+    .section-block { padding-top: 64px; }
+    .section-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 22px; font-weight: 800; letter-spacing: -.025em; color: var(--text); margin-bottom: 6px; }
+    .section-sub { font-size: 13px; font-weight: 300; color: #777; margin-bottom: 28px; line-height: 1.6; }
+
+    /* ── SERVICE PRICING CARDS ── */
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .svc {
+      background: var(--surface); padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative;
+    }
+    .svc.featured { background: var(--surface-2); }
+    .svc.featured::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--amber);
+    }
+    .svc-badge { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: #555; text-transform: uppercase; }
+    .svc-name { font-size: 18px; font-weight: 800; letter-spacing: -.025em; color: var(--text); }
+    .svc-price {
+      font-size: clamp(16px,2.5vw,22px); font-weight: 700; letter-spacing: -.02em;
+      color: var(--amber); line-height: 1; padding: 10px 0; display: flex; align-items: baseline; gap: 10px;
+    }
+    .svc-price-note { font-family: var(--mono); font-size: 9px; color: #555; font-weight: 400; }
+    .svc-div { height: 1px; background: var(--border); }
+    .svc-profile { font-size: 13px; font-weight: 300; color: #888; line-height: 1.6; }
+    .svc-items { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+    .svc-item { font-size: 12px; font-weight: 300; color: #777; display: flex; gap: 8px; line-height: 1.4; }
+    .svc-item::before { content: '—'; color: var(--border); flex-shrink: 0; font-family: var(--mono); }
+
+    /* ── VARIABLES BLOCK ── */
+    .vars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+    .var-card { background: var(--surface); padding: 28px 24px; }
+    .var-label { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; }
+    .var-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .var-desc { font-size: 12px; font-weight: 300; color: #777; line-height: 1.55; }
+
+    /* ── DIAG CTA BLOCK ── */
+    .diag-block {
+      background: var(--surface-2); border-left: 2px solid var(--amber);
+      padding: 36px 44px; margin-top: 1px;
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    }
+    .diag-left {}
+    .diag-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; }
+    .diag-title { font-size: clamp(18px,2.5vw,26px); font-weight: 800; letter-spacing: -.03em; color: var(--text); margin-bottom: 8px; }
+    .diag-desc { font-size: 13px; font-weight: 300; color: #888; line-height: 1.6; max-width: 480px; }
+    .diag-right { flex-shrink: 0; }
+    .diag-detail { font-family: var(--mono); font-size: 10px; color: #555; line-height: 1.7; text-align: right; }
+
+    /* ── CRITERIA ── */
+    .criteria-list { display: flex; flex-direction: column; gap: 1px; }
+    .crit { background: var(--surface); padding: 22px 28px; display: grid; grid-template-columns: 24px 1fr; gap: 16px; align-items: start; }
+    .crit-n { font-family: var(--mono); font-size: 11px; color: #444; }
+    .crit-text { font-size: 13px; font-weight: 300; color: #aaa; line-height: 1.6; }
+    .crit-text strong { color: var(--text); font-weight: 700; }
+
+    /* ── FOOTER ── */
+    .foot { border-top: 1px solid var(--border); padding: 24px 56px; display: flex; align-items: center; justify-content: space-between; margin-top: 32px; }
+    .foot a { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: #555; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .foot a:hover { color: var(--amber); }
+    .foot-note { font-family: var(--mono); font-size: 9px; color: #333; letter-spacing: .1em; }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo"><span class="l">L</span><span class="u">UNIQ</span></div>
+  <a href="../index.html">← Voltar ao Hub</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Proposta comercial · Luniq Inteligência Financeira</div>
+  <h1>Investimento baseado<br>em <em>valor gerado.</em></h1>
+  <p class="hero-desc">Não há tabela de preços. Cada proposta é composta após o diagnóstico — com base na complexidade da operação, na intensidade do acompanhamento e no resultado esperado.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- OS QUATRO SERVIÇOS -->
+  <div class="section-block">
+    <div class="section-tag">01 · O que está na prateleira</div>
+    <div class="section-title">Quatro serviços. Sob consulta.</div>
+    <p class="section-sub">O diagnóstico gratuito define o formato certo e a proposta é construída a partir daí — sem preço de tabela, sem pacote genérico.</p>
+    <div class="svc-grid">
+
+      <div class="svc">
+        <div class="svc-badge">Serviço 01</div>
+        <div class="svc-name">Consultoria Mensal</div>
+        <div class="svc-price">
+          Sob consulta
+          <span class="svc-price-note">após diagnóstico gratuito</span>
+        </div>
+        <div class="svc-div"></div>
+        <div class="svc-profile">Acompanhamento especializado mensal. Para empresas com time interno que precisam de um olhar externo experiente todo mês.</div>
+        <div class="svc-items">
+          <div class="svc-item">Reunião mensal de análise financeira</div>
+          <div class="svc-item">DRE, caixa, margens e forecast</div>
+          <div class="svc-item">Relatório executivo consolidado</div>
+          <div class="svc-item">Suporte assíncrono entre encontros</div>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="svc-badge">Serviço 02</div>
+        <div class="svc-name">BPO Financeiro</div>
+        <div class="svc-price">
+          Sob consulta
+          <span class="svc-price-note">conforme escopo e complexidade</span>
+        </div>
+        <div class="svc-div"></div>
+        <div class="svc-profile">Execução da rotina financeira operacional. Para empresas que precisam de quem estrutura e executa — não apenas orienta.</div>
+        <div class="svc-items">
+          <div class="svc-item">Fechamento financeiro recorrente</div>
+          <div class="svc-item">Governança e controles internos</div>
+          <div class="svc-item">Processos padronizados e documentados</div>
+          <div class="svc-item">Relatórios e indicadores periódicos</div>
+        </div>
+      </div>
+
+      <div class="svc featured">
+        <div class="svc-badge">Serviço 03</div>
+        <div class="svc-name">BPO + Inteligência</div>
+        <div class="svc-price">
+          Sob consulta
+          <span class="svc-price-note">semanal · quinzenal · mensal</span>
+        </div>
+        <div class="svc-div"></div>
+        <div class="svc-profile">O serviço mais completo. Operação estruturada + painel ativo + encontros regulares com Anderson. Gestão financeira de classe A.</div>
+        <div class="svc-items">
+          <div class="svc-item">Tudo do BPO Financeiro</div>
+          <div class="svc-item">Painel Luniq configurado e ativo</div>
+          <div class="svc-item">Encontros com cadência definida</div>
+          <div class="svc-item">Leitura executiva e advisory estratégico</div>
+        </div>
+      </div>
+
+      <div class="svc">
+        <div class="svc-badge">Serviço 04</div>
+        <div class="svc-name">Análises com Painel Luniq</div>
+        <div class="svc-price">
+          Sob consulta
+          <span class="svc-price-note">pontual ou recorrente</span>
+        </div>
+        <div class="svc-div"></div>
+        <div class="svc-profile">Inteligência financeira via tecnologia do Painel Luniq — dashboards, análises e relatórios executivos sem gestão continuada.</div>
+        <div class="svc-items">
+          <div class="svc-item">Painel financeiro configurado</div>
+          <div class="svc-item">DRE, caixa e margens em tempo real</div>
+          <div class="svc-item">Relatórios executivos automatizados</div>
+          <div class="svc-item">Análises pontuais sob demanda</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section-block">
+    <div class="section-tag">02 · O primeiro passo</div>
+    <div class="section-title">Diagnóstico gratuito</div>
+    <p class="section-sub">Toda proposta começa pelo diagnóstico. Sem custo, sem compromisso. Com clareza real sobre o que a empresa precisa — e o que a Luniq entrega.</p>
+    <div class="diag-block">
+      <div class="diag-left">
+        <div class="diag-tag">Como funciona</div>
+        <div class="diag-title">Diagnóstico antes de qualquer proposta.</div>
+        <p class="diag-desc">Anderson analisa a situação real da empresa — financeira e operacionalmente. Mapeia os principais gaps, define prioridades e apresenta o formato de acompanhamento mais adequado. Só depois vem a proposta.</p>
+      </div>
+      <div class="diag-right">
+        <div class="diag-detail">
+          Duração: 2 semanas<br>
+          Custo: gratuito<br>
+          Compromisso: nenhum<br>
+          Resultado: claro e direto
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIÁVEIS -->
+  <div class="section-block">
+    <div class="section-tag">03 · O que define o valor</div>
+    <div class="section-title">Critérios de composição</div>
+    <p class="section-sub">Não há preço de tabela porque cada empresa tem um ponto de partida diferente. Três variáveis principais definem o investimento.</p>
+    <div class="vars-grid">
+      <div class="var-card">
+        <div class="var-label">Variável 01</div>
+        <div class="var-title">Complexidade da operação</div>
+        <p class="var-desc">Tamanho do time, volume de transações, número de módulos financeiros, integrações e áreas envolvidas. Quanto mais complexo, maior o escopo.</p>
+      </div>
+      <div class="var-card">
+        <div class="var-label">Variável 02</div>
+        <div class="var-title">Intensidade do acompanhamento</div>
+        <p class="var-desc">Frequência de encontros, profundidade de análise, tempo de resposta esperado e nível de presença de Anderson na operação.</p>
+      </div>
+      <div class="var-card">
+        <div class="var-label">Variável 03</div>
+        <div class="var-title">Ponto de partida atual</div>
+        <p class="var-desc">Se a empresa já tem estrutura financeira básica, o trabalho de implantação é menor. Se parte do zero, o investimento inicial para estruturar é maior.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRITÉRIOS -->
+  <div class="section-block">
+    <div class="section-tag">04 · Princípios de precificação</div>
+    <div class="section-title">Como a Luniq pensa o valor</div>
+    <p class="section-sub">O preço reflete impacto. Cada proposta é desenhada para que o investimento faça sentido dentro do resultado esperado.</p>
+    <div class="criteria-list">
+      <div class="crit"><span class="crit-n">01</span><div class="crit-text"><strong>Proposta após diagnóstico, sempre.</strong> Não há preço antes de entender a situação real. Anderson analisa, define o escopo e apresenta uma proposta clara.</div></div>
+      <div class="crit"><span class="crit-n">02</span><div class="crit-text"><strong>Entregáveis definidos antes de começar.</strong> Cada contrato especifica o que está incluído — o que será entregue, com qual frequência e como o resultado será medido.</div></div>
+      <div class="crit"><span class="crit-n">03</span><div class="crit-text"><strong>Contratos com início, meio e possibilidade de renovação.</strong> Sem lock-in forçado. Renovação acontece porque o resultado justifica — não por clausulas de fidelidade.</div></div>
+      <div class="crit"><span class="crit-n">04</span><div class="crit-text"><strong>O valor reflete o impacto.</strong> Decisão mais rápida, menos perda de margem, crescimento sustentável — o preço é proporcional ao que se deixa de perder ou ao que se passa a ganhar.</div></div>
+      <div class="crit"><span class="crit-n">05</span><div class="crit-text"><strong>Desconto para compromisso de prazo.</strong> Contratos trimestrais e semestrais têm condições diferenciadas. O compromisso do cliente é correspondido com preço melhor.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <a href="./solucoes.html">Ver soluções →</a>
+  <span class="foot-note">Luniq Inteligência Financeira · Anderson Almeida · 2026</span>
+  <a href="../index.html">← Hub</a>
+</footer>
+
+</body>
+</html>

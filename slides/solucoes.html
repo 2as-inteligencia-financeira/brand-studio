@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luniq — Soluções</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/theme.css" />
+  <style>
+    body { background: var(--bg); font-family: var(--sans); color: var(--text); }
+
+    /* ── NAV ── */
+    .top-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 56px; background: #050505; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 99;
+    }
+    .top-nav-logo { display: flex; align-items: baseline; }
+    .top-nav-logo .l { font-size: 20px; font-weight: 800; color: var(--amber); letter-spacing: -.04em; }
+    .top-nav-logo .u { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.04em; }
+    .top-nav a { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: #666; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .top-nav a:hover { color: var(--amber); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 56px 64px; border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 45% 65% at 85% 45%, rgba(245,158,11,.07) 0%, transparent 65%),
+        #050505;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(30,30,30,.6) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(36px,5.5vw,64px); font-weight: 800; letter-spacing: -.04em; line-height: 1.05; margin-bottom: 18px; }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero-desc { font-size: 15px; font-weight: 300; color: #888; max-width: 580px; line-height: 1.75; }
+
+    /* ── SECTIONS ── */
+    .wrap { padding: 0 56px 80px; }
+    .section-block { padding-top: 64px; }
+    .section-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 22px; font-weight: 800; letter-spacing: -.025em; color: var(--text); margin-bottom: 6px; }
+    .section-sub { font-size: 13px; font-weight: 300; color: #777; margin-bottom: 28px; line-height: 1.6; max-width: 680px; }
+
+    /* ── SERVICE CARDS ── */
+    .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .service {
+      background: var(--surface); padding: 40px 36px;
+      display: flex; flex-direction: column; gap: 14px;
+      position: relative; overflow: hidden;
+    }
+    .service.featured { background: var(--surface-2); }
+    .service.featured::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--amber);
+    }
+    .service-n {
+      position: absolute; top: 22px; right: 28px;
+      font-family: var(--mono); font-size: 38px; font-weight: 500;
+      color: var(--surface-2); line-height: 1;
+    }
+    .service.featured .service-n { color: #1e1e1e; }
+    .service-badge {
+      display: inline-flex; background: rgba(245,158,11,.1);
+      border: 1px solid rgba(245,158,11,.2);
+      padding: 4px 10px; border-radius: 2px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .16em;
+      color: var(--amber); text-transform: uppercase;
+      width: fit-content;
+    }
+    .service-name { font-size: 20px; font-weight: 800; letter-spacing: -.025em; color: var(--text); }
+    .service-desc { font-size: 13px; font-weight: 300; color: #888; line-height: 1.65; }
+    .service-div { height: 1px; background: var(--border); }
+    .service-for { font-size: 12px; font-weight: 300; color: #777; line-height: 1.55; }
+    .service-for strong { color: #aaa; font-weight: 700; }
+    .service-items { display: flex; flex-direction: column; gap: 7px; }
+    .service-item { font-size: 12px; color: #666; display: flex; gap: 8px; line-height: 1.4; }
+    .service-item::before { content: '—'; color: var(--border); flex-shrink: 0; font-family: var(--mono); }
+    .service-cadencia {
+      display: inline-flex; background: var(--surface-2); padding: 3px 9px; border-radius: 2px;
+      font-family: var(--mono); font-size: 9px; color: var(--amber); letter-spacing: .1em;
+      margin-top: 4px; width: fit-content;
+    }
+
+    /* ── CRITERION TABLE ── */
+    .crit-rows { display: flex; flex-direction: column; gap: 1px; }
+    .crit-row {
+      background: var(--surface); padding: 22px 28px;
+      display: grid; grid-template-columns: 200px 1fr 1fr;
+      gap: 24px; align-items: start;
+    }
+    .crit-type { font-family: var(--mono); font-size: 9px; letter-spacing: .16em; color: var(--amber); text-transform: uppercase; padding-top: 2px; }
+    .crit-when { font-size: 13px; font-weight: 300; color: #888; line-height: 1.55; }
+    .crit-when strong { color: var(--text); font-weight: 700; }
+    .crit-result { font-size: 12px; font-weight: 300; color: #666; line-height: 1.55; border-left: 1px solid var(--border); padding-left: 24px; }
+
+    /* ── COMBOS ── */
+    .combo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; }
+    .combo { background: var(--surface); padding: 28px 24px; }
+    .combo-name { font-size: 15px; font-weight: 800; letter-spacing: -.02em; color: var(--text); margin-bottom: 10px; }
+    .combo-comp { font-family: var(--mono); font-size: 10px; color: var(--amber); letter-spacing: .1em; margin-bottom: 14px; }
+    .combo-goal { font-size: 13px; font-weight: 300; color: #888; line-height: 1.6; }
+    .combo-tag { display: inline-flex; background: var(--surface-2); padding: 3px 9px; border-radius: 2px; font-family: var(--mono); font-size: 9px; color: #555; letter-spacing: .1em; margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    .foot { border-top: 1px solid var(--border); padding: 24px 56px; display: flex; align-items: center; justify-content: space-between; margin-top: 32px; }
+    .foot a { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: #555; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+    .foot a:hover { color: var(--amber); }
+    .foot-note { font-family: var(--mono); font-size: 9px; color: #333; letter-spacing: .1em; }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo"><span class="l">L</span><span class="u">UNIQ</span></div>
+  <a href="../index.html">← Voltar ao Hub</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Prateleira de serviços · Luniq Inteligência Financeira</div>
+  <h1>Quatro serviços.<br><em>Um método.</em></h1>
+  <p class="hero-desc">A Luniq entrega inteligência financeira em formatos que se adaptam ao momento e à maturidade de cada empresa. Do acompanhamento mensal à operação financeira completa.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- OS QUATRO SERVIÇOS -->
+  <div class="section-block">
+    <div class="section-tag">01 · Prateleira de serviços</div>
+    <div class="section-title">Consultoria · BPO · Inteligência</div>
+    <p class="section-sub">Cada serviço responde a um tipo de necessidade — de visibilidade a execução, de análise pontual a gestão continuada.</p>
+    <div class="service-grid">
+
+      <div class="service">
+        <div class="service-n">01</div>
+        <div class="service-badge">Consultoria</div>
+        <div class="service-name">Consultoria Mensal</div>
+        <p class="service-desc">Acompanhamento financeiro mensal estruturado — com análise de DRE, fluxo de caixa, margens e indicadores. Um olhar externo especializado todo mês para ajudar a empresa a decidir melhor.</p>
+        <div class="service-div"></div>
+        <p class="service-for"><strong>Para quem:</strong> empresa que já tem time financeiro interno, mas precisa de um especialista externo para analisar os números, questionar premissas e apoiar decisões estratégicas com frequência mensal.</p>
+        <div class="service-items">
+          <div class="service-item">Reunião mensal de análise financeira</div>
+          <div class="service-item">DRE gerencial, caixa e margens</div>
+          <div class="service-item">Budget e forecast revisados</div>
+          <div class="service-item">Indicadores e alertas de desvio</div>
+          <div class="service-item">Relatório executivo consolidado</div>
+          <div class="service-item">Suporte assíncrono entre encontros</div>
+        </div>
+        <span class="service-cadencia">Cadência: mensal</span>
+      </div>
+
+      <div class="service">
+        <div class="service-n">02</div>
+        <div class="service-badge">BPO</div>
+        <div class="service-name">BPO Financeiro</div>
+        <p class="service-desc">A Luniq assume e estrutura a rotina operacional financeira da empresa — fechamentos, governança, processos e controles. Para quem precisa de execução, não só de visibilidade.</p>
+        <div class="service-div"></div>
+        <p class="service-for"><strong>Para quem:</strong> empresa que cresceu rápido, não tem processos financeiros estruturados e precisa de alguém que execute e organize a rotina — não apenas oriente de fora.</p>
+        <div class="service-items">
+          <div class="service-item">Fechamento financeiro recorrente</div>
+          <div class="service-item">Rotinas de contas a pagar e receber</div>
+          <div class="service-item">Governança e controles internos</div>
+          <div class="service-item">Padronização de processos financeiros</div>
+          <div class="service-item">Relatórios e indicadores periódicos</div>
+          <div class="service-item">Capacitação do time interno</div>
+        </div>
+        <span class="service-cadencia">Cadência: conforme escopo</span>
+      </div>
+
+      <div class="service featured">
+        <div class="service-n">03</div>
+        <div class="service-badge">BPO + BI</div>
+        <div class="service-name">BPO + Inteligência</div>
+        <p class="service-desc">O serviço mais completo da Luniq: operação financeira estruturada com painel de inteligência integrado e encontros regulares com Anderson para leitura executiva dos dados e decisão estratégica.</p>
+        <div class="service-div"></div>
+        <p class="service-for"><strong>Para quem:</strong> empresa que quer gestão financeira de classe A — execução operacional, dados em tempo real e um CFO experiente ao lado nas decisões que importam.</p>
+        <div class="service-items">
+          <div class="service-item">Tudo do BPO Financeiro</div>
+          <div class="service-item">Painel Luniq configurado e ativo</div>
+          <div class="service-item">Encontros semanais, quinzenais ou mensais</div>
+          <div class="service-item">Leitura executiva dos dados com Anderson</div>
+          <div class="service-item">Cenários, simulações e plano de ação</div>
+          <div class="service-item">Advisory estratégico contínuo</div>
+        </div>
+        <span class="service-cadencia">Cadência: semanal · quinzenal · mensal</span>
+      </div>
+
+      <div class="service">
+        <div class="service-n">04</div>
+        <div class="service-badge">Painel Luniq</div>
+        <div class="service-name">Análises com Painel Luniq</div>
+        <p class="service-desc">Análises financeiras e operacionais com base na tecnologia do Painel Luniq — dashboards, relatórios executivos e inteligência de dados entregues de forma pontual ou recorrente.</p>
+        <div class="service-div"></div>
+        <p class="service-for"><strong>Para quem:</strong> empresa que precisa de visibilidade e inteligência financeira sem contratar gestão continuada — análises sob demanda, relatórios executivos e painéis customizados.</p>
+        <div class="service-items">
+          <div class="service-item">Painel financeiro configurado para a empresa</div>
+          <div class="service-item">DRE, caixa e margens em tempo real</div>
+          <div class="service-item">Relatórios executivos automatizados em PDF</div>
+          <div class="service-item">39 fontes de dados conectáveis</div>
+          <div class="service-item">Análises e snapshots sob demanda</div>
+          <div class="service-item">Stack: React 19 + Google Sheets API</div>
+        </div>
+        <span class="service-cadencia">Cadência: pontual ou recorrente</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMO ESCOLHER -->
+  <div class="section-block">
+    <div class="section-tag">02 · Como escolher</div>
+    <div class="section-title">O serviço certo começa pelo diagnóstico</div>
+    <p class="section-sub">A escolha do formato depende do momento da empresa: o que está faltando, o que já existe e qual resultado é esperado.</p>
+    <div class="crit-rows">
+      <div class="crit-row">
+        <div class="crit-type">Consultoria Mensal</div>
+        <div class="crit-when"><strong>Quando a empresa tem time e precisa de clareza e questionamento externo.</strong> Já existe quem executa internamente — falta um especialista que analisa, questiona e orienta.</div>
+        <div class="crit-result">Entrega: análise mensal, DRE e margens revisados, forecast atualizado e relatório executivo. Time interno opera; Luniq valida e orienta.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-type">BPO Financeiro</div>
+        <div class="crit-when"><strong>Quando falta execução e rotina financeira estruturada.</strong> O problema não é estratégia — é processo, fechamento e governança que não acontecem de forma consistente.</div>
+        <div class="crit-result">Entrega: rotina financeira estruturada, fechamentos recorrentes, governança implantada e time capacitado para manter com menor dependência.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-type">BPO + Inteligência</div>
+        <div class="crit-when"><strong>Quando a empresa quer gestão financeira completa.</strong> Precisa de execução operacional, dados integrados em tempo real e apoio estratégico contínuo de um profissional experiente.</div>
+        <div class="crit-result">Entrega: operação estruturada + painel ativo + encontros regulares com Anderson para leitura executiva e decisão estratégica. Gestão de classe A.</div>
+      </div>
+      <div class="crit-row">
+        <div class="crit-type">Análises com Painel Luniq</div>
+        <div class="crit-when"><strong>Quando a empresa precisa de visibilidade e inteligência sem gestão continuada.</strong> Quer dados organizados, análises pontuais e relatórios prontos para usar.</div>
+        <div class="crit-result">Entrega: painel financeiro configurado, dashboards executivos e relatórios automatizados. Tecnologia do Painel Luniq aplicada à realidade da empresa.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMBINAÇÕES -->
+  <div class="section-block">
+    <div class="section-tag">03 · Combinações possíveis</div>
+    <div class="section-title">Serviços que se complementam</div>
+    <p class="section-sub">Os serviços podem ser contratados isoladamente ou combinados conforme a necessidade e o momento da empresa.</p>
+    <div class="combo-grid">
+      <div class="combo">
+        <div class="combo-name">Visão + Execução</div>
+        <div class="combo-comp">Consultoria Mensal + BPO Financeiro</div>
+        <p class="combo-goal">Para empresas que precisam organizar a rotina operacional e manter um especialista externo para análise e orientação mensal.</p>
+        <span class="combo-tag">Execução + validação externa</span>
+      </div>
+      <div class="combo">
+        <div class="combo-name">Inteligência Completa</div>
+        <div class="combo-comp">BPO + Inteligência (padrão)</div>
+        <p class="combo-goal">A combinação mais completa: operação estruturada, dados em tempo real e presença estratégica regular de Anderson. Para quem quer o melhor da gestão financeira.</p>
+        <span class="combo-tag">Estrutura + dados + decisão</span>
+      </div>
+      <div class="combo">
+        <div class="combo-name">Dados em Primeiro Lugar</div>
+        <div class="combo-comp">Análises com Painel Luniq + Consultoria Mensal</div>
+        <p class="combo-goal">Tecnologia de inteligência financeira com acompanhamento especializado mensal. Para empresas que valorizam dados mas ainda não precisam de execução operacional.</p>
+        <span class="combo-tag">Dados + orientação mensal</span>
+      </div>
+      <div class="combo">
+        <div class="combo-name">Projeto de Implantação</div>
+        <div class="combo-comp">Diagnóstico → Painel → BPO ou Consultoria</div>
+        <p class="combo-goal">Começa pelo diagnóstico gratuito, estrutura o painel e a rotina, e entra no formato de acompanhamento mais adequado. Caminho natural para quem parte do zero.</p>
+        <span class="combo-tag">Entrada → estruturação → acompanhamento</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="foot">
+  <a href="./precificacao.html">Ver precificação →</a>
+  <span class="foot-note">Luniq Inteligência Financeira · Anderson Almeida · 2026</span>
+  <a href="../index.html">← Hub</a>
+</footer>
+
+</body>
+</html>
