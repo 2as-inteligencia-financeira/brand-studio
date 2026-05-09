@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luniq — Pitch 2026</title>
+  <title>2AS — Pitch 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/theme.css" />
+  <link rel="stylesheet" href="/assets/theme.css" />
   <style>
     html, body { height: 100%; overflow: hidden; }
     body { background: var(--bg); font-family: var(--sans); color: var(--text); }
@@ -13,7 +13,7 @@
     .slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .5s ease; overflow: hidden; display: flex; }
     .slide.on { opacity: 1; pointer-events: all; }
     .prog { position: fixed; top: 0; left: 0; height: 2px; background: var(--amber); transition: width .4s; z-index: 999; }
-    .dg::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(30,30,30,.7) 1px, transparent 1px); background-size: 28px 28px; }
+    .dg::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(15,15,10,.09) 1px, transparent 1px); background-size: 28px 28px; }
     .sn { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; }
 
     /* nav */
@@ -25,18 +25,10 @@
     /* hub link */
     .hub-link { position: fixed; top: 24px; left: 32px; z-index: 999; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: #666; text-transform: uppercase; text-decoration: none; transition: color .2s; }
     .hub-link:hover { color: var(--amber); }
-    #p1, #p6 {
-      --text: #f5f5f2;
-      --muted: #b3b3ad;
-      --dim: #777770;
-      --border: #252520;
-      --surface: #111111;
-      --surface-2: #181818;
-    }
 
     /* P1 COVER */
     #p1 { display: flex; flex-direction: column; justify-content: center; padding: 80px 96px;
-      background: radial-gradient(ellipse 40% 65% at 82% 50%, rgba(245,158,11,.1) 0%, transparent 65%), #050505; position: relative; }
+      background: radial-gradient(ellipse 40% 65% at 82% 50%, rgba(245,158,11,.1) 0%, transparent 65%), var(--bg); position: relative; }
     .p1-over { position: relative; z-index: 1; font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: #555; text-transform: uppercase; margin-bottom: 36px; }
     .p1-name { position: relative; z-index: 1; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .02em; margin-bottom: 10px; }
     .p1-brand { position: relative; z-index: 1; display: flex; align-items: baseline; line-height: .9; margin-bottom: 16px; }
@@ -47,7 +39,7 @@
 
     /* P2 MERCADO */
     #p2 { display: flex; flex-direction: column; justify-content: center; padding: 80px 96px; background: var(--surface); }
-    .big { font-size: clamp(72px,14vw,160px); font-weight: 800; letter-spacing: -.07em; line-height: .9; color: var(--surface-2); margin-bottom: 10px; }
+    .big { font-size: clamp(72px,14vw,160px); font-weight: 800; letter-spacing: -.07em; line-height: .9; color: var(--ghost); margin-bottom: 10px; }
     .big em { color: var(--red); font-style: normal; }
     .big-ctx { font-size: clamp(16px,2.2vw,24px); font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.5; margin-bottom: 44px; border-bottom: 1px solid var(--border); padding-bottom: 36px; }
     .big-ctx strong { color: var(--text); font-weight: 700; }
@@ -78,7 +70,7 @@
     #p4 h2 em { font-style: normal; color: var(--amber); }
     .pl3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; }
     .pll { background: var(--bg); padding: 32px 26px; position: relative; overflow: hidden; }
-    .pll::after { content: attr(data-n); position: absolute; top: 18px; right: 20px; font-family: var(--mono); font-size: 38px; font-weight: 500; color: var(--surface-2); line-height: 1; }
+    .pll::after { content: attr(data-n); position: absolute; top: 18px; right: 20px; font-family: var(--mono); font-size: 38px; font-weight: 500; color: var(--ghost); line-height: 1; }
     .pll-tag { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; margin-bottom: 10px; }
     .pll-name { font-size: 16px; font-weight: 800; margin-bottom: 10px; color: var(--text); }
     .pll-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.6; }
@@ -100,7 +92,7 @@
 
     /* P6 CTA */
     #p6 { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px; position: relative;
-      background: radial-gradient(ellipse 55% 65% at 50% 45%, rgba(245,158,11,.11) 0%, transparent 65%), #050505; }
+      background: radial-gradient(ellipse 55% 65% at 50% 45%, rgba(245,158,11,.11) 0%, transparent 65%), var(--bg); }
     .p6-over { position: relative; z-index: 1; font-family: var(--mono); font-size: 9px; letter-spacing: .22em; color: #555; text-transform: uppercase; margin-bottom: 28px; }
     #p6 h2 { position: relative; z-index: 1; font-size: clamp(44px,7vw,84px); font-weight: 800; letter-spacing: -.05em; line-height: 1; margin-bottom: 24px; color: var(--text); }
     #p6 h2 em { font-style: normal; color: var(--amber); }
@@ -121,11 +113,11 @@
 
 <!-- P1 COVER -->
 <section class="slide dg on" id="p1">
-  <div class="p1-over">Luniq Inteligência Financeira · 2026</div>
+  <div class="p1-over">2AS Inteligência Financeira · 2026</div>
   <div class="p1-name">Anderson Almeida</div>
   <div class="p1-brand">
-    <span style="font-size:clamp(80px,13vw,150px);font-weight:800;color:var(--amber);letter-spacing:-.06em;line-height:.9">L</span>
-    <span style="font-size:clamp(80px,13vw,150px);font-weight:800;color:#fff;letter-spacing:-.06em;line-height:.9">UNIQ</span>
+    <span style="font-size:clamp(80px,13vw,150px);font-weight:800;color:var(--amber);letter-spacing:-.06em;line-height:.9">2</span>
+    <span style="font-size:clamp(80px,13vw,150px);font-weight:800;color:var(--text);letter-spacing:-.06em;line-height:.9">AS</span>
   </div>
   <div class="p1-sub">Inteligência Financeira</div>
   <div class="p1-tag">Consultoria. Gestão. Inteligência de dados.<br>Para empresas que crescem com controle.</div>
@@ -154,7 +146,7 @@
     <div class="sn" style="margin-bottom:20px">03 / 06 · Quem é</div>
     <h2>A experiência que<br>nenhum livro<br><em>ensina.</em></h2>
     <p><strong>Anderson Almeida</strong> construiu e liderou estruturas financeiras e operacionais em empresas de EdTech que saíram do zero para referências nacionais no Brasil.</p>
-    <p>Coordenou times, implantou FP&A, estruturou orçamentos e transformou dados dispersos em inteligência acionável — com resultados mensuráveis em cada etapa. <strong>A Luniq não é teoria. É o método forjado na prática.</strong></p>
+    <p>Coordenou times, implantou FP&A, estruturou orçamentos e transformou dados dispersos em inteligência acionável — com resultados mensuráveis em cada etapa. <strong>A 2AS não é teoria. É o método forjado na prática.</strong></p>
   </div>
   <div class="right">
     <div class="cr hl"><div class="cr-lbl">Especialidade</div><div class="cr-val">FP&A · Budget &amp; Forecast · BI</div><div class="cr-sub">Gestão Financeira · Inteligência de Dados</div></div>
@@ -168,12 +160,11 @@
 <section class="slide" id="p4">
   <div class="p4i">
     <div class="sn" style="margin-bottom:20px">04 / 06 · Serviços</div>
-    <h2>Quatro serviços. <em>Um método.</em></h2>
-    <div class="pl3" style="grid-template-columns:repeat(4,1fr)">
-      <div class="pll" data-n="01"><div class="pll-tag">Serviço 01</div><div class="pll-name">Consultoria Mensal</div><div class="pll-desc">Acompanhamento mensal com análise de DRE, caixa, margens e forecast. Reunião mensal + relatório executivo.</div><div class="pll-items"><div class="pll-it">Reunião mensal de análise</div><div class="pll-it">DRE, caixa e margens</div><div class="pll-it">Relatório executivo</div></div></div>
-      <div class="pll" data-n="02"><div class="pll-tag">Serviço 02</div><div class="pll-name">BPO Financeiro</div><div class="pll-desc">Execução da rotina financeira operacional — fechamentos, governança e processos estruturados.</div><div class="pll-items"><div class="pll-it">Fechamento recorrente</div><div class="pll-it">Governança e controles</div><div class="pll-it">Processos padronizados</div></div></div>
-      <div class="pll" data-n="03"><div class="pll-tag">Serviço 03</div><div class="pll-name">BPO + Inteligência</div><div class="pll-desc">O mais completo: BPO + Painel Luniq ativo + encontros regulares com Anderson para decisão estratégica.</div><div class="pll-items"><div class="pll-it">BPO + Painel Luniq ativo</div><div class="pll-it">Encontros semanais / quinzenais / mensais</div><div class="pll-it">Advisory estratégico</div></div></div>
-      <div class="pll" data-n="04"><div class="pll-tag">Serviço 04</div><div class="pll-name">Análises com Painel Luniq</div><div class="pll-desc">Inteligência financeira via Painel Luniq — dashboards e relatórios executivos, sem gestão continuada.</div><div class="pll-items"><div class="pll-it">Painel financeiro customizado</div><div class="pll-it">DRE e caixa em tempo real</div><div class="pll-it">Relatórios PDF automatizados</div></div></div>
+    <h2>Três pilares. <em>Um método.</em></h2>
+    <div class="pl3">
+      <div class="pll" data-n="01"><div class="pll-tag">Pilar 01</div><div class="pll-name">Consultoria Financeira</div><div class="pll-desc">Diagnóstico, modelagem e estruturação. FP&A, Budget, DRE e fluxo com visibilidade real sobre saúde e margens.</div><div class="pll-items"><div class="pll-it">FP&A e Budget &amp; Forecast</div><div class="pll-it">DRE, Caixa e Margens</div><div class="pll-it">Diagnóstico e reestruturação</div></div></div>
+      <div class="pll" data-n="02"><div class="pll-tag">Pilar 02</div><div class="pll-name">Gestão Operacional</div><div class="pll-desc">Estrutura para empresas que cresceram rápido e precisam de processo para sustentar o crescimento.</div><div class="pll-items"><div class="pll-it">Processos e indicadores</div><div class="pll-it">Estruturação de times</div><div class="pll-it">Rotinas de gestão</div></div></div>
+      <div class="pll" data-n="03"><div class="pll-tag">Pilar 03</div><div class="pll-name">BI Financeiro</div><div class="pll-desc">Da planilha ao painel. Dados financeiros que gestores usam para decidir, sem defasagem, sem esforço manual.</div><div class="pll-items"><div class="pll-it">Painéis integrados</div><div class="pll-it">Automação de fechamentos</div><div class="pll-it">Fonte única de verdade</div></div></div>
     </div>
   </div>
 </section>
@@ -181,21 +172,21 @@
 <!-- P5 DIFERENCIAIS -->
 <section class="slide" id="p5">
   <div class="p5i">
-    <div class="sn" style="margin-bottom:16px">05 / 06 · Por que a Luniq</div>
+    <div class="sn" style="margin-bottom:16px">05 / 06 · Por que a 2AS</div>
     <h2>O que nenhuma consultoria<br>genérica <em>entrega.</em></h2>
     <p class="p5-sub">Quatro diferenciais que só vêm de quem esteve dentro da operação.</p>
     <div class="difs">
       <div class="dif"><div class="dif-label">Experiência real</div><div class="dif-desc"><strong>Anderson construiu o que consulta.</strong> Não é teoria. É método testado em operações reais, sob pressão real, com resultado mensurável.</div></div>
-      <div class="dif"><div class="dif-label">Método antes de ferramenta</div><div class="dif-desc">O problema de gestão vem antes da escolha de software. <strong>A Luniq estrutura o processo antes de automatizar qualquer coisa.</strong></div></div>
+      <div class="dif"><div class="dif-label">Método antes de ferramenta</div><div class="dif-desc">O problema de gestão vem antes da escolha de software. <strong>A 2AS estrutura o processo antes de automatizar qualquer coisa.</strong></div></div>
       <div class="dif"><div class="dif-label">Dados como argumento</div><div class="dif-desc">Toda recomendação é ancorada em número auditado. <strong>Sem opinião sem dado. Sem dado sem fonte verificada.</strong></div></div>
-      <div class="dif"><div class="dif-label">Transferência de método</div><div class="dif-desc">O objetivo não é dependência. É <strong>capacitar o time interno</strong> para operar com inteligência depois que a Luniq sai.</div></div>
+      <div class="dif"><div class="dif-label">Transferência de método</div><div class="dif-desc">O objetivo não é dependência. É <strong>capacitar o time interno</strong> para operar com inteligência depois que a 2AS sai.</div></div>
     </div>
   </div>
 </section>
 
 <!-- P6 CTA -->
 <section class="slide dg" id="p6">
-  <div class="p6-over">Luniq Inteligência Financeira · Anderson Almeida · 2026</div>
+  <div class="p6-over">2AS Inteligência Financeira · Anderson Almeida · 2026</div>
   <h2>Vamos começar<br>pelo <em>diagnóstico.</em></h2>
   <p class="p6-desc">O primeiro passo é entender a situação real da sua empresa — financeira e operacionalmente. Gratuito. Sem compromisso. Com resultado claro.</p>
   <div class="p6-cards">
@@ -204,7 +195,7 @@
     <div class="p6c"><div class="p6c-lbl">LinkedIn</div><div class="p6c-val">adm-andersonalmeida</div><div class="p6c-sub">Brasília, DF · Todo o Brasil</div></div>
   </div>
   <button class="p6-btn">Entrar em contato</button>
-  <div class="p6-note">Inteligência que transforma gestão. · Luniq Inteligência Financeira · 2026</div>
+  <div class="p6-note">Inteligência que transforma gestão. · 2AS Inteligência Financeira · 2026</div>
 </section>
 
 </div>

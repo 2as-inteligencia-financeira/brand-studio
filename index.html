@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luniq Brand Studio</title>
+  <title>2AS Brand Studio</title>
   <!-- Auth Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
@@ -14,8 +14,8 @@
 
       // ALTO-02: origens autorizadas a enviar token (apenas hub em produção)
       const TRUSTED_HUB_ORIGINS = [
-        'https://hub.luniqfinancas.com',
-        'https://app.luniqfinancas.com',
+        'https://hub.2asfinancas.com',
+        'https://app.2asfinancas.com',
         ...(location.hostname === 'localhost' ? ['http://localhost:5173', 'http://localhost:3000'] : []),
       ];
 
@@ -44,7 +44,7 @@
 
       const { data: { session } } = await client.auth.getSession();
       if (!session) {
-        window.location.href = 'https://hub.luniqfinancas.com';
+        window.location.href = 'https://app.2asfinancas.com';
       }
     })();
   </script>
@@ -125,14 +125,14 @@
 <body>
 
 <nav class="top-nav">
-  <div class="top-nav-logo"><span class="l">L</span><span class="u">UNIQ</span></div>
+  <div class="top-nav-logo"><span class="l"<>2</span><span style="color:#fff">AS</span></div>
   <span class="top-nav-tag">Brand Studio · 2026</span>
 </nav>
 
 <header class="hero">
-  <div class="hero-over">Luniq Inteligência Financeira · Brand Studio</div>
+  <div class="hero-over">2AS Inteligência Financeira · Brand Studio</div>
   <h1>Marca,<br>materiais e<br><em>método.</em></h1>
-  <p class="hero-desc">Manual de marca, apresentações comerciais, pitch e portfólio de soluções — com a linguagem visual e narrativa que define a Luniq.</p>
+  <p class="hero-desc">Manual de marca, apresentações comerciais, pitch e portfólio de soluções — com a linguagem visual e narrativa que define a 2AS.</p>
 </header>
 
 <div class="section-wrap">
@@ -149,7 +149,7 @@
     <a class="card deck" href="./slides/apresentacao.html">
       <span class="card-tag">Deck · 8 slides</span>
       <div class="card-title">Apresentação Comercial</div>
-      <p class="card-desc">Deck completo para prospect: quem é Anderson, o problema, a Luniq, serviços, método, prova de capacidade e CTA.</p>
+      <p class="card-desc">Deck completo para prospect: quem é Anderson, o problema, a 2AS, serviços, método, prova de capacidade e CTA.</p>
       <span class="card-arrow">Abrir deck →</span>
     </a>
 
@@ -177,7 +177,7 @@
     <a class="card doc" href="./slides/solucoes.html">
       <span class="card-tag">Portfólio</span>
       <div class="card-title">SaaS · CFO · BPO</div>
-      <p class="card-desc">Os três formatos de entrega da Luniq, combinações de oferta por objetivo e critério de escolha por maturidade do cliente.</p>
+      <p class="card-desc">Os três formatos de entrega da 2AS, combinações de oferta por objetivo e critério de escolha por maturidade do cliente.</p>
       <span class="card-arrow">Ver soluções →</span>
     </a>
 
@@ -185,7 +185,7 @@
 </div>
 
 <footer class="footer">
-  <span class="footer-left">Luniq Inteligência Financeira · Anderson Almeida</span>
+  <span class="footer-left">2AS Inteligência Financeira · Anderson Almeida</span>
   <span class="footer-right">Brand Studio · 2026</span>
 </footer>
 

@@ -1,6 +1,6 @@
-# Luniq Brand Studio
+# 2AS Brand Studio
 
-Projeto separado para materiais comerciais da Luniq:
+Projeto separado para materiais comerciais da 2AS:
 
 - Manual da marca
 - Apresentação comercial
