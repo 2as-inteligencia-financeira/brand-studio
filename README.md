@@ -1,39 +1,14 @@
 # 2AS Brand Studio
 
-Projeto separado para materiais comerciais da 2AS:
+Base oficial de marca e materiais comerciais da 2AS Inteligência Financeira.
 
-- Manual da marca
-- Apresentação comercial
-- Pitch executivo
-- Precificação
-- Estrutura de soluções (SaaS, CFO as a Service, BPO)
+## Conteúdo
+- Manual da Marca
+- Apresentação Comercial
+- Pitch Executivo
+- Arquitetura Comercial: duas portas de entrada
+- Diretrizes de Proposta
+- Logo Showcase
 
-## Estrutura
-
-- `index.html` - hub de navegação
-- `assets/theme.css` - tokens visuais e estilos compartilhados
-- `slides/manual-marca.html`
-- `slides/apresentacao.html`
-- `slides/pitch.html`
-- `slides/precificacao.html`
-- `slides/solucoes.html`
-- `originais/*.html` - cópias dos arquivos que você já tinha pronto
-
-## Como usar
-
-Abra `index.html` no navegador ou sirva a pasta com qualquer servidor estático.
-
-Exemplo simples:
-
-```bash
-cd "brand-studio"
-python3 -m http.server 8080
-```
-
-Depois acesse: `http://localhost:8080`
-
-## Evolução recomendada
-
-- Migrar os conteúdos dos arquivos originais de `marca/apresentacoes/` para as páginas equivalentes quando quiser.
-- Criar versão PDF de cada página para envio comercial.
-- Adicionar variações por segmento (EdTech, serviços, indústria etc.).
+## Posicionamento
+A 2AS é uma empresa especializada em Inteligência Financeira aplicada à estruturação de negócios. Tecnologia, dashboards, automações e IA são ferramentas do método, não produtos isolados.
