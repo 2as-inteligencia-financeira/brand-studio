@@ -7,13 +7,13 @@
   </defs>
   
 
-  <!-- Wordmark: L (amber) + UNIQ -->
+  <!-- Wordmark: 2 (amber) + AS -->
   <text
     font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
     font-size="48" font-weight="800"
     letter-spacing="-2"
     y="56">
-    <tspan fill="#f59e0b" x="20">L</tspan><tspan fill="#ffffff">UNIQ</tspan>
+    <tspan fill="#f59e0b" x="20">2</tspan><tspan fill="#ffffff">AS</tspan>
   </text>
 
   <!-- Hairline divider -->
