@@ -1,0 +1,11 @@
+# O vercel.json usa outputDirectory "." — a pasta inteira vira site. Sem este
+# arquivo, tudo que está aqui é servido publicamente, inclusive coisa que só
+# faz sentido na máquina. Conferido em 2026-07-31:
+# https://brand.2asfinancas.com/.claude/settings.local.json respondia 200.
+.claude
+.claude-flow
+
+# Pacote de distribuição, não precisa estar no ar.
+*.zip
+
+.DS_Store
