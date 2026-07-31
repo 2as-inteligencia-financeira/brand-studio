@@ -38,6 +38,19 @@
       reveal: true,
       /** Mínimo de seções pra valer a pena montar a barra. */
       min: 3,
+      /**
+       * Modo deck: cada seção vira um slide de tela cheia, com o conteúdo
+       * centrado e scroll-snap — o formato do /ppt-michelob do Somma.
+       *
+       * Usa `min-height`, não `height`: seção que não cabe numa tela cresce e
+       * rola normalmente, só continua sendo o ponto de parada do snap. É o que
+       * permite ligar isto numa página que foi escrita para rolar, sem cortar
+       * conteúdo. E `proximity`, não `mandatory`: o snap ajuda quem está
+       * navegando e sai da frente de quem está lendo.
+       */
+      deck: false,
+      /** O que vira slide. Inclui o hero, que costuma não ser <section>. */
+      deckSelector: "header.hero",
     },
     window.deckChrome || {},
   );
@@ -86,6 +99,7 @@
     });
 
     injectStyle();
+    if (cfg.deck) modoDeck(sections);
 
     var bar = document.createElement("div");
     bar.className = "dc-progress";
@@ -252,6 +266,41 @@
   }
 
   function noop() {}
+
+/**
+ * Transforma as seções em slides de tela cheia com scroll-snap.
+ *
+ * A nav dessas páginas é `position: sticky; top: 0`, então um slide que pousa
+ * no topo do viewport fica com o começo atrás dela. `scroll-padding-top` com a
+ * altura medida da nav resolve — medida, não chutada, porque cada página tem
+ * um padding diferente.
+ */
+function modoDeck(sections) {
+  const nav = document.querySelector("nav, header nav, .nav");
+  const alturaNav = nav ? Math.round(nav.getBoundingClientRect().height) : 0;
+
+  const alvos = new Set(sections);
+  document.querySelectorAll(cfgDeckSelector()).forEach((el) => alvos.add(el));
+
+  const st = document.createElement("style");
+  st.setAttribute("data-deck-mode", "");
+  st.textContent =
+    "html{scroll-snap-type:y proximity;scroll-padding-top:" + alturaNav + "px}" +
+    "[data-dc-slide]{min-height:100svh;display:flex;flex-direction:column;" +
+    "justify-content:center;scroll-snap-align:start}" +
+    // Quem prefere menos movimento não quer a página se ajeitando sozinha.
+    "@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}}" +
+    // Impressão: slide vira página, sem esticar nem snap.
+    "@media print{html{scroll-snap-type:none}" +
+    "[data-dc-slide]{min-height:0;display:block;break-after:page}}";
+  document.head.appendChild(st);
+
+  alvos.forEach((el) => el.setAttribute("data-dc-slide", ""));
+}
+
+function cfgDeckSelector() {
+  return (window.deckChrome && window.deckChrome.deckSelector) || "header.hero";
+}
 
   function injectStyle() {
     var css = [
