@@ -55,6 +55,17 @@ function iguais(a, b) {
   return dif === 0;
 }
 
+/** Extrai um cookie do header `Cookie`. Devolve "" quando não existe. */
+function leCookie(header, nome) {
+  if (!header) return "";
+  for (const parte of header.split(";")) {
+    const i = parte.indexOf("=");
+    if (i < 0) continue;
+    if (parte.slice(0, i).trim() === nome) return parte.slice(i + 1).trim();
+  }
+  return "";
+}
+
 function semConfig() {
   return new Response(
     "Brand Studio sem configuração de acesso. Defina BRAND_ACCESS_CODE e " +
@@ -78,13 +89,17 @@ export default async function middleware(req) {
   if (url.pathname === "/api/auth") {
     if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
 
-    let enviado = "";
-    try {
-      const body = await req.json();
-      enviado = String(body?.codigo ?? "").trim();
-    } catch {
-      return Response.json({ ok: false }, { status: 400 });
-    }
+    /**
+     * O código vem em header, não no corpo.
+     *
+     * Medido no vercel dev: o Edge Middleware entrega o corpo vazio —
+     * `req.json()` estourava e `req.text()` devolvia "" (enviado.len=0 com
+     * codigo.len=6). Header é lido sem problema e, sobre HTTPS, viaja tão
+     * protegido quanto o corpo. O que não pode é query string, que entra em
+     * log de acesso.
+     */
+    const enviado = (req.headers.get("x-bs-codigo") ?? "").trim();
+    if (!enviado) return Response.json({ ok: false, erro: "sem-codigo" }, { status: 400 });
 
     if (!iguais(enviado, codigo)) {
       // Atraso pequeno e fixo: encarece a força bruta sem virar canal lateral.
@@ -101,8 +116,11 @@ export default async function middleware(req) {
   }
 
   // ── Toda a demais navegação ───────────────────────────────────────────
-  const atual = req.cookies?.get(COOKIE)?.value;
-  if (iguais(atual ?? "", token)) return; // segue para o conteúdo
+  // Lê do header, não de req.cookies: `req.cookies` é API do NextRequest, e
+  // aqui o middleware recebe um Request padrão — a propriedade não existe e o
+  // acesso opcional devolvia undefined, barrando quem já tinha entrado.
+  const atual = leCookie(req.headers.get("cookie"), COOKIE);
+  if (iguais(atual, token)) return; // segue para o conteúdo
 
   // Reescreve (não redireciona): a URL pedida continua na barra, então depois
   // de entrar a pessoa cai na página que queria.

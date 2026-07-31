@@ -27,7 +27,9 @@
     background:radial-gradient(60% 45% at 50% 38%,rgba(245,158,11,.10),transparent 70%);
   }
   .box{position:relative;width:100%;max-width:420px;text-align:center}
-  .logo{height:40px;width:auto;margin-inline:auto;display:block}
+  /* 64px: abaixo disso o descritor do SVG (8.5px num viewBox de 90) vira
+     borrão ilegível. */
+  .logo{height:64px;width:auto;margin-inline:auto;display:block}
   .rule{width:64px;height:1px;background:var(--amber);opacity:.55;margin:28px auto 0}
   .eyebrow{
     margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.32em;
@@ -136,10 +138,11 @@
     form.classList.remove("erro"); msg.textContent = "";
     btn.textContent = "Verificando...";
 
+    // O código vai em header: o Edge Middleware da Vercel não entrega o corpo
+    // da requisição (medido — chegava vazio). Sobre HTTPS é equivalente.
     fetch("/api/auth", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ codigo: input.value })
+      headers: { "x-bs-codigo": input.value }
     }).then(function(r){
       if (r.ok) { location.replace(destino()); return; }
       form.classList.add("erro");
