@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>2AS Brand Studio — acesso</title>
+<link rel="icon" href="/assets/2AS-favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#090907; --surface:#11110f; --text:#f6f4ed; --muted:#9c988d;
+    --border:#24231d; --amber:#f59e0b; --red:#ef4444;
+    --sans:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"DM Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100svh; display:flex; align-items:center; justify-content:center;
+    padding:40px 20px; background:var(--bg); color:var(--text);
+    font-family:var(--sans); -webkit-font-smoothing:antialiased;
+  }
+  /* Brilho quente atrás do bloco, mesma mecânica do hero dos slides. */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none;
+    background:radial-gradient(60% 45% at 50% 38%,rgba(245,158,11,.10),transparent 70%);
+  }
+  .box{position:relative;width:100%;max-width:420px;text-align:center}
+  .logo{height:40px;width:auto;margin-inline:auto;display:block}
+  .rule{width:64px;height:1px;background:var(--amber);opacity:.55;margin:28px auto 0}
+  .eyebrow{
+    margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--amber);
+  }
+  h1{margin-top:14px;font-size:clamp(1.9rem,7vw,2.6rem);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+  h1 em{font-style:normal;color:var(--amber)}
+  .sub{margin-top:18px;font-size:.9rem;line-height:1.6;color:var(--muted)}
+
+  form{margin-top:34px}
+  .field{position:relative}
+  .field input{
+    position:absolute;inset:0;width:100%;height:100%;
+    opacity:0;cursor:pointer;z-index:2;font-size:16px; /* 16px: evita auto-zoom no iOS */
+  }
+  .cells{display:flex;justify-content:center;gap:8px;pointer-events:none}
+  .cell{
+    width:46px;height:58px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.15);border-radius:12px;
+    background:rgba(255,255,255,.04);
+    font-size:1.6rem;font-weight:800;font-variant-numeric:tabular-nums;
+    transition:border-color .18s ease,background-color .18s ease;
+  }
+  .cell.filled{border-color:rgba(245,158,11,.6)}
+  .cell.active{border-color:rgba(245,158,11,.4)}
+  .caret{width:1px;height:20px;background:rgba(246,244,237,.5);animation:blink 1s steps(2,start) infinite}
+  @keyframes blink{to{visibility:hidden}}
+  form.erro .cell{border-color:var(--red);background:rgba(239,68,68,.08)}
+
+  .msg{margin-top:16px;height:20px;font-size:.85rem;color:var(--red)}
+  button{
+    margin-top:6px;width:100%;padding:16px;border:0;border-radius:12px;cursor:pointer;
+    background:var(--amber);color:#0a0a0a;
+    font-family:inherit;font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    transition:opacity .18s ease,transform .18s ease;
+  }
+  button:hover:not(:disabled){transform:translateY(-2px)}
+  button:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .foot{margin-top:34px;font-size:.7rem;line-height:1.7;color:#575349}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+  <main class="box">
+    <img class="logo" src="/assets/2AS-logo-transparente-escuro.svg" alt="2AS Inteligência Financeira" />
+    <div class="rule" aria-hidden="true"></div>
+
+    <p class="eyebrow">Brand Studio · 2026</p>
+    <h1>Material <em>restrito.</em></h1>
+    <p class="sub">Identidade, posicionamento e materiais comerciais da 2AS.<br />Informe o código de acesso.</p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="codigo" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Código de acesso de 6 dígitos</label>
+        <input id="codigo" name="codigo" inputmode="numeric" pattern="[0-9]*"
+               autocomplete="one-time-code" maxlength="6" autofocus aria-describedby="msg" />
+        <div class="cells" id="cells" aria-hidden="true"></div>
+      </div>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      <button type="submit" id="btn" disabled>Abrir Brand Studio</button>
+    </form>
+
+    <p class="foot">Documento interno da 2AS Inteligência Financeira.<br />Não redistribuir sem autorização.</p>
+  </main>
+
+<script>
+(function(){
+  var DIG = 6;
+  var input = document.getElementById("codigo");
+  var cells = document.getElementById("cells");
+  var msg   = document.getElementById("msg");
+  var btn   = document.getElementById("btn");
+  var form  = document.getElementById("form");
+  var enviando = false;
+
+  for (var i = 0; i < DIG; i++) {
+    var c = document.createElement("span");
+    c.className = "cell";
+    cells.appendChild(c);
+  }
+
+  function pinta(){
+    var v = input.value;
+    for (var i = 0; i < DIG; i++) {
+      var cell = cells.children[i];
+      var ativo = v.length < DIG && i === v.length;
+      cell.className = "cell" + (v[i] ? " filled" : ativo ? " active" : "");
+      cell.textContent = "";
+      if (v[i]) cell.textContent = v[i];
+      else if (ativo) { var k = document.createElement("span"); k.className = "caret"; cell.appendChild(k); }
+    }
+    btn.disabled = v.length !== DIG || enviando;
+  }
+
+  // Só o caminho de onde a pessoa veio, e só se for do próprio site —
+  // "//outro.com" seria um redirect aberto.
+  function destino(){
+    var de = new URLSearchParams(location.search).get("de") || "/";
+    return (de.charAt(0) === "/" && de.charAt(1) !== "/") ? de : "/";
+  }
+
+  function enviar(){
+    if (enviando || input.value.length !== DIG) return;
+    enviando = true; btn.disabled = true;
+    form.classList.remove("erro"); msg.textContent = "";
+    btn.textContent = "Verificando...";
+
+    fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ codigo: input.value })
+    }).then(function(r){
+      if (r.ok) { location.replace(destino()); return; }
+      form.classList.add("erro");
+      msg.textContent = "Código incorreto. Tente de novo.";
+      input.value = ""; input.focus(); pinta();
+    }).catch(function(){
+      form.classList.add("erro");
+      msg.textContent = "Não deu para verificar agora. Tente de novo.";
+    }).finally(function(){
+      enviando = false;
+      btn.textContent = "Abrir Brand Studio";
+      pinta();
+    });
+  }
+
+  input.addEventListener("input", function(){
+    input.value = input.value.replace(/\D/g, "").slice(0, DIG);
+    form.classList.remove("erro"); msg.textContent = "";
+    pinta();
+    if (input.value.length === DIG) enviar();
+  });
+  form.addEventListener("submit", function(e){ e.preventDefault(); enviar(); });
+  input.focus();
+  pinta();
+})();
+</script>
+</body>
+</html>
