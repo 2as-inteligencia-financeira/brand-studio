@@ -8,3 +8,8 @@ dist/
 Thumbs.db
 
 .vercel
+
+# Dados locais da ferramenta claude-flow.
+.claude-flow/
+# Artefato de build dos decks.
+*.zip
