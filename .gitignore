@@ -13,3 +13,9 @@ Thumbs.db
 .claude-flow/
 # Artefato de build dos decks.
 *.zip
+
+# Catch-all de segredos: qualquer variante .env fica fora do Git.
+# Exemplos versionados continuam rastreados pela negação abaixo.
+.env*
+!.env.example
+!.env.local.example

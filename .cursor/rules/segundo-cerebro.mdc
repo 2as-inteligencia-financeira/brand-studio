@@ -1,0 +1,43 @@
+---
+description: Memória durável única é o Segundo Cérebro; ler o índice antes de qualquer tarefa
+alwaysApply: true
+---
+
+# Segundo cérebro compartilhado
+
+`/Users/andersonalmeida/Documents/SEGUNDO CÉREBRO` é a **única** memória durável de
+Cursor, Claude Code, Codex e Antigravity. Não usar memória interna do Cursor, Knowledge
+Items, Ruflo, AgentDB, claude-mem nem arquivo paralelo como segunda fonte canônica.
+
+## Antes de cada tarefa
+
+1. Ler somente `INDEX.md` do cofre.
+2. Identificar o projeto pela pasta em que o trabalho acontece e abrir o
+   `01 Projetos/<projeto>/AI_CONTEXT.md` correspondente.
+3. Seguir apenas os links materialmente necessários até ter o menor contexto suficiente.
+4. Priorizar notas com `status: vigente`. Se o pedido conflitar com decisão ou
+   preferência vigente, sinalizar o conflito antes de substituir.
+
+Nunca percorrer o cofre inteiro preventivamente.
+
+## Roteamento
+
+| Pasta de trabalho | Contexto |
+|---|---|
+| `clientes/Lalize` | `01 Projetos/Lalizê/AI_CONTEXT.md` |
+| `clientes/MLAW Advogados`, `clientes/MLAW Diligencias OS` | `01 Projetos/MLAW/AI_CONTEXT.md` |
+| `clientes/Law Society` | `01 Projetos/Law Society/AI_CONTEXT.md` |
+| `clientes/Leduc` | `01 Projetos/Leduc/AI_CONTEXT.md` |
+| `clientes/painel-direcaoconcursos` | `01 Projetos/Direção/AI_CONTEXT.md` |
+| raiz do workspace | `01 Projetos/2AS/AI_CONTEXT.md` |
+
+Somma Club é referência e histórico, não projeto operacional.
+
+## Ao concluir
+
+Registrar apenas conhecimento com valor futuro: decisão e justificativa, estado,
+restrição, preferência, aprendizado reutilizável ou próximo passo. Atualizar a nota
+canônica existente e os índices afetados, mantendo `INDEX.md` e `AI_CONTEXT.md`
+compactos. Não transcrever conversa, não gravar log, trivialidade nem segredo.
+
+Protocolo completo: `00 Sistema/PROTOCOLO.md` dentro do cofre.
